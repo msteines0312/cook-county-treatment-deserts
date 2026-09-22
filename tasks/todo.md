@@ -13,7 +13,7 @@
 - [x] `fetch_census.py`: tract boundaries and block populations
 - [x] Run `fetch_acs()` once the Census API key is in `.env`
 - [x] Spatial join: deaths to tracts, facilities to tracts
-- [ ] `notebooks/01_data_quality.ipynb`: row counts, nulls, what each overdose rule catches
+- [x] Data quality checks (covered in methodology D1 to D1c and the module printouts instead of a separate notebook)
 
 ## Phase 2: Where and when
 - [x] Deaths per 100k by tract (pool years, since single-year tract rates are noisy)
@@ -41,7 +41,8 @@
 - [x] Interpret the results as rate ratios
 
 ## Phase 5: Story
-- [ ] Tableau extracts in `outputs/tableau/`
+- [x] Tableau extracts in `outputs/tableau/`
 - [ ] Dashboard
-- [ ] Policy brief
-- [ ] README: key features, figures, what I learned
+- [x] Policy brief draft (docs/policy_brief.md), to reshape into the CTA format
+- [x] README: key features, figures
+- [ ] Rewrite "What I Learned" in my own words
