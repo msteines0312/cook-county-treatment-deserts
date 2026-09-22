@@ -14,7 +14,7 @@ Public health spatial analysis: overdose deaths vs access to MOUD treatment in C
 - Tract GEOIDs are 11-character strings. Read them with `dtype=str` or the leading zeros get lost.
 - Suppress counts below `SUPPRESSION_THRESHOLD` before anything is saved to `outputs/`.
 - Frame findings around access and structure, not group behavior.
-- Matt fills in the module logic. Provide frames and guidance, not finished code, unless asked.
+- Claude writes the module logic and works through tasks/todo.md. Explain the non-obvious choices as you go (Matt is learning from the code).
 
 ## Data gotchas
 - ME API dataset `cjeq-bs86`: some cases lack lat/long, some dates fall outside 2014 to present, and the cause text has typos.

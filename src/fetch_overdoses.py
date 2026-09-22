@@ -11,6 +11,8 @@ import requests
 
 from src.config import ME_DATASET_URL, ME_PAGE_SIZE, OVERDOSE_MANNER, RAW_DIR
 
+RAW_FILENAME = "me_accidental_cases.csv"
+
 
 def fetch_me_cases(manner=OVERDOSE_MANNER):
     """
@@ -25,27 +27,49 @@ def fetch_me_cases(manner=OVERDOSE_MANNER):
     -------
     pd.DataFrame
         One row per case, columns as returned by the Socrata API.
-
-    Notes
-    -----
-    Socrata pages with $limit and $offset. Always pass an $order (casenumber
-    works) so that pages don't shift between requests and drop or duplicate rows.
     """
-    # TODO: loop, requesting ME_PAGE_SIZE rows at a time with params like
-    #   {"$where": f"manner='{manner}'", "$order": "casenumber",
-    #    "$limit": ME_PAGE_SIZE, "$offset": offset}
-    # and stop when a page comes back with fewer rows than ME_PAGE_SIZE.
-    # Print the running row count so you can sanity-check it against ~33k.
-    raise NotImplementedError
+    pages = []
+    offset = 0
+
+    while True:
+        params = {
+            "$where": f"manner='{manner}'",
+            # A fixed sort order keeps pages stable. Without it Socrata can
+            # return rows in a different order per request and we'd get
+            # duplicates on one page and gaps on another.
+            "$order": "casenumber",
+            "$limit": ME_PAGE_SIZE,
+            "$offset": offset,
+        }
+        response = requests.get(ME_DATASET_URL, params=params, timeout=120)
+        response.raise_for_status()
+
+        page = response.json()
+        pages.extend(page)
+        print(f"  fetched {len(pages):,} rows so far")
+
+        # A short page means we've hit the end
+        if len(page) < ME_PAGE_SIZE:
+            break
+        offset += ME_PAGE_SIZE
+
+    cases = pd.DataFrame(pages)
+
+    # `location` is a nested dict that just repeats latitude/longitude, and
+    # nested dicts don't survive a round trip through CSV cleanly
+    cases = cases.drop(columns=["location"], errors="ignore")
+    return cases
 
 
-def save_raw(df, filename="me_accidental_cases.csv"):
+def save_raw(df, filename=RAW_FILENAME):
     """Write the untouched pull to data/raw/ so later steps never re-hit the API."""
-    # TODO: save to RAW_DIR / filename, index=False
-    raise NotImplementedError
+    path = RAW_DIR / filename
+    df.to_csv(path, index=False)
+    print(f"  saved {len(df):,} rows to {path.relative_to(RAW_DIR.parent.parent)}")
 
 
 if __name__ == "__main__":
+    print("Fetching ME accidental death cases...")
     cases = fetch_me_cases()
     print(cases.shape)
     save_raw(cases)
