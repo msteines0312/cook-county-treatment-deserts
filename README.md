@@ -1,8 +1,8 @@
 # Cook County Treatment Deserts
 
-Where are overdose deaths happening in Cook County, how far are those places from evidence-based treatment, and who lives in the areas with the worst access? This project maps overdose deaths against the locations of facilities offering medications for opioid use disorder (MOUD), then asks whether "treatment deserts" carry a higher overdose burden after accounting for income and other structural factors.
+Where are overdose deaths happening in Cook County, is treatment supply matched to where people are dying, and who lives in the places where it isn't? This project maps 17,000 overdose deaths against sites offering medications for opioid use disorder (MOUD) and measures access *relative to need*, not just distance.
 
-> Status: in progress (Phase 1, data pipeline)
+> Status: in progress. Pipeline done, access analysis underway.
 
 ## Tech Stack
 - Python (pandas, geopandas, requests)
@@ -42,8 +42,8 @@ tasks/          project to-do list
 ## Analysis Plan
 1. **Pipeline:** pull ME cases, filter to accidental drug overdoses, join to census tracts. Pull MOUD facilities and ACS demographics.
 2. **Where and when:** overdose death rates per 100k by tract, the shift to fentanyl over time, time of day and day of week patterns.
-3. **Access:** distance from every tract to the nearest MOUD facility, then an upgrade to CTA transit travel time. Flag deserts.
-4. **Demographics:** compare desert and non-desert tracts on race, income, insurance, and vehicle access. Fit a negative binomial model of overdose counts with a population offset.
+3. **Access:** a two-step floating catchment area (2SFCA) score for every tract: MOUD sites in reach per 100 annual overdose deaths. Straight-line distance turned out to run backwards (clinics open where need is highest), so access is measured against need. Upgrade to CTA transit travel time next.
+4. **Demographics:** compare high-burden, low-access tracts with the rest on race, income, insurance, and vehicle access, then fit a count model (negative binomial with a population offset).
 5. **Story:** a Tableau dashboard and a short policy brief.
 
 ## Ethics and Limitations

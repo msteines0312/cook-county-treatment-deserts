@@ -75,10 +75,48 @@ The ME records where the incident happened and, separately, the residence ZIP. W
 - 14 listings had no usable location (mostly sober living homes that keep their address private). 2 of them list MOUD.
 - Telehealth buprenorphine isn't captured by a physical-distance measure at all.
 
+### D4c. Access relative to need (2SFCA), the main access measure
+**Why the switch:** straight-line distance ran backwards (see "First look at access" below). The hardest-hit tracts are closest to clinics, because clinics open where the need is. Distance to the nearest clinic mostly measures where clinics chose to open, so it can't tell us whether supply matches need.
+
+**Method:** two-step floating catchment area (Luo and Wang, 2003), a standard health-access measure.
+1. Draw a 2-mile catchment around every MOUD site and add up the demand from tract centers inside it. Each site's ratio = 1 / that demand.
+2. Each tract's access score = the sum of ratios of every site whose catchment reaches it.
+
+Two versions of demand:
+- **Population** (sites per 100k residents), the textbook version.
+- **Need** (sites per 100 annual overdose deaths, 2021 to 2025). This is the main measure. Recent years are used because the facility list is current.
+
+**Groups:** a tract is *high burden* if its overdose rate is in the county's top quartile, and *low access* if its need-based score is below the county benchmark (the need-weighted average score, 7.6 sites per 100 annual deaths at 2 miles). That benchmark works out close to total sites divided by total deaths, so "low access" means "less treatment per death than the county as a whole."
+
+**Changed during build:** the first cutoff for "low access" was the county *median* score. At a 1-mile catchment over half of all tracts (mostly suburbs) have no site in reach, so the median was exactly 0 and no tract could be below it. The sensitivity check returned zero underserved tracts, which is how the bug showed up. The need-weighted benchmark doesn't have that problem.
+
+**Result (2-mile catchment):**
+
+| Group | Tracts | Share of population | Share of 2015-2025 deaths | Sites per 100 deaths | Miles to nearest MOUD | Median income | % no vehicle | % Black |
+|---|---|---|---|---|---|---|---|---|
+| High burden, low access | 229 | 12.5% | **39.5%** | 4.3 | 0.6 | $43,569 | 29.7 | 79.8 |
+| High burden, high access | 103 | 6.4% | 17.5% | 10.0 | 0.6 | $58,494 | 21.2 | 67.3 |
+| Low burden, high access | 435 | 34.6% | 17.2% | 13.8 | 0.9 | $93,632 | 11.4 | 4.4 |
+| Low burden, low access | 561 | 46.5% | 25.8% | 2.6 | 1.6 | $82,768 | 9.1 | 3.8 |
+
+(Medians across tracts in each group, except the shares.)
+
+The high-burden, low-access tracts are **not** deserts by distance: their median tract is 0.6 miles from a clinic. Per resident they look fine. Per overdose death, they have less than half the treatment supply of other high-burden tracts.
+
+**Sensitivity:** at 1, 2, and 3 mile catchments the high-burden, low-access group has 239, 229, and 244 tracts. 84% of the 2-mile group appears in the 1-mile group, and 84% appears in the 3-mile group. The group's median demographics barely move (about 80% Black, about 30% of households without a vehicle).
+
+**Limitations:**
+- Every site counts as 1 unit of supply. FindTreatment doesn't publish capacity (slots, hours, waitlists), so a large methadone clinic and a small buprenorphine practice count the same. This is the biggest weakness of the measure, and it's a good question for people who work in treatment.
+- Demand only comes from Cook tracts. Sites just outside the county also serve DuPage and Lake residents, so access near the county line is somewhat overstated. This barely touches the city tracts the analysis focuses on.
+- Using deaths as demand and then comparing groups by overdose rate is partly built in: a high-death tract pushes up the demand at its nearby sites. The comparison between the two *high burden* groups (similar rates, very different access) is the cleaner contrast.
+- Catchments are straight-line circles for now. Transit travel time is the planned upgrade.
+
 ### D5. Small-number suppression
 Suppress any published count below 10. This matters most for tract-by-race breakdowns.
 
 ### D6. Regression model
+**Open issue (2026-09-22):** the original plan was to regress overdose counts on access. With need-based 2SFCA that's circular, because deaths are in the access score's denominator. With distance, the reverse causality from clinic siting is the problem. Options for Phase 4: model deaths on demographics and *population-based* access and treat the result as descriptive rather than causal, or drop the causal framing and focus on describing who lives in the underserved group. To be decided before Phase 4 starts.
+
 Overdose deaths are counts: non-negative integers, mostly small, with a lot of tracts near zero. Linear regression assumes a continuous, normally distributed outcome, which a count isn't. We'll use a negative binomial model with log(population) as an offset (which turns counts into rates), because overdose counts are almost certainly overdispersed (variance much larger than the mean), and overdispersion breaks Poisson's variance = mean assumption. We'll fit Poisson first and test for overdispersion before switching.
 
 ## Framing
@@ -95,4 +133,4 @@ Straight-line distance from population-weighted tract centers to the nearest MOU
 
 The simple hypothesis ("deserts have more overdose deaths") runs backwards on straight-line distance. The highest-rate tracts in the county (East and West Garfield Park and Humboldt Park, 330 to 455 per 100k) sit 0.2 to 0.6 miles from an MOUD site. Clinics are located where the need is, so distance and overdose burden are tangled together (reverse causality), and most 2-mile deserts are lower-burden suburbs. Median distance countywide is 1.0 mile.
 
-This matters for Phase 4. A regression with distance as the predictor would pick up where clinics chose to open, not the effect of access. What to do about it is still an open decision (see tasks/todo.md).
+This matters for Phase 4. A regression with distance as the predictor would pick up where clinics chose to open, not the effect of access. **Resolved:** access is now measured relative to need with 2SFCA (D4c).

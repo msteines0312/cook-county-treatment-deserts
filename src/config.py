@@ -140,6 +140,21 @@ DESERT_DISTANCE_MILES = 2.0
 DESERT_TRANSIT_MINUTES = 30
 
 # ---------------------------------------------------------------------------
+# Access relative to need (two-step floating catchment area, 2SFCA)
+# ---------------------------------------------------------------------------
+# Straight-line distance showed clinics sit where overdoses are highest, so
+# "distance to nearest clinic" mostly measures where clinics chose to open.
+# 2SFCA instead asks how much treatment supply each tract can reach relative
+# to the demand competing for it. See methodology D4c.
+CATCHMENT_MILES = 2.0
+CATCHMENT_SENSITIVITY_MILES = [1.0, 2.0, 3.0]
+
+# Need is measured with recent deaths, because the facility list is current.
+# Comparing today's clinics to 2016 overdose patterns would mismatch the two.
+NEED_START_YEAR = 2021
+NEED_END_YEAR = 2025
+
+# ---------------------------------------------------------------------------
 # Privacy guardrails
 # ---------------------------------------------------------------------------
 # Suppress any cell (tract x year, tract x race, etc.) with fewer deaths than

@@ -6,6 +6,7 @@ Joins together:
   - 2020 census population, from the block file
   - a population-weighted center for each tract
   - straight-line distance from that center to the nearest MOUD site
+  - 2SFCA access scores (treatment supply relative to population and to need)
   - ACS demographics, if they've been pulled (needs a Census API key)
 """
 
@@ -13,14 +14,18 @@ import geopandas as gpd
 import numpy as np
 import pandas as pd
 
+from src.access import distance_matrix_feet, two_step_fca
 from src.config import (
     ANALYSIS_END_YEAR,
     ANALYSIS_START_YEAR,
+    CATCHMENT_MILES,
     CRS_LATLON,
     CRS_PROJECTED,
     DESERT_DISTANCE_MILES,
     FEET_PER_MILE,
     MIN_POPULATION_FOR_RATE,
+    NEED_END_YEAR,
+    NEED_START_YEAR,
     PROCESSED_DIR,
     REFERENCE_DIR,
 )
@@ -85,6 +90,85 @@ def nearest_site_miles(centers, sites, label):
     joined = joined[~joined.index.duplicated()]
     centers[f"miles_to_{label}"] = joined["feet"] / FEET_PER_MILE
     return centers
+
+
+def add_access_scores(tract_table, centers, sites, catchment_miles=CATCHMENT_MILES):
+    """
+    Add 2SFCA access columns to the tract table.
+
+    Two kinds of demand:
+      - population: MOUD sites per 100k residents in reach (the textbook version)
+      - need: MOUD sites per 100 annual overdose deaths in reach, using
+        NEED_START_YEAR through NEED_END_YEAR. This is the version that answers
+        "is treatment supply matched to where people are dying?"
+
+    Each site counts as 1 unit of supply. FindTreatment doesn't publish
+    capacity (slots, hours, waitlists), so a small buprenorphine practice and
+    a large methadone clinic count the same. See methodology D4c.
+    """
+    tract_table = tract_table.copy()
+    need_years = range(NEED_START_YEAR, NEED_END_YEAR + 1)
+    need_columns = [f"deaths_{year}" for year in need_years]
+    tract_table["need_deaths_per_year"] = tract_table[need_columns].sum(axis=1) / len(need_years)
+
+    # centers and tract_table are both in GEOID order from the same source,
+    # but align explicitly so a future change can't silently scramble rows
+    centers = centers.set_index("GEOID").loc[tract_table["GEOID"]]
+    population = tract_table["population_2020"]
+    need = tract_table["need_deaths_per_year"]
+
+    supply_sets = {
+        "moud": sites[sites["offers_moud"]],
+        "moud_medicaid": sites[sites["offers_moud"] & sites["accepts_medicaid"]],
+    }
+    for label, supply in supply_sets.items():
+        distances = distance_matrix_feet(centers, supply)
+        tract_table[f"access_{label}_per_100k_pop"] = (
+            two_step_fca(distances, population, catchment_miles) * 100_000
+        )
+        # Floor of 1 death a year per site: a site with no deaths nearby would
+        # otherwise divide by zero and hand its tracts an infinite score
+        tract_table[f"access_{label}_per_100_deaths"] = (
+            two_step_fca(distances, need, catchment_miles, min_site_demand=1) * 100
+        )
+    return tract_table
+
+
+def label_quadrants(tract_table):
+    """
+    Sort tracts into four groups by overdose burden and access relative to need.
+
+    "High burden" means an overdose rate in the county's top quartile.
+    "Low access" means fewer MOUD sites per 100 deaths than the county as a
+    whole, where the county figure is the need-weighted average access score.
+
+    Why not the median access score: at small catchments over half of all
+    tracts (mostly suburbs) have no site in reach, so the median is exactly 0
+    and "below the median" matches nothing. The need-weighted average is
+    close to total sites / total deaths, which is easier to explain anyway.
+    """
+    tract_table = tract_table.copy()
+    rate_cutoff = tract_table["overdose_rate_per_100k"].quantile(0.75)
+    access_benchmark = np.average(
+        tract_table["access_moud_per_100_deaths"],
+        weights=tract_table["need_deaths_per_year"],
+    )
+    print(f"  county benchmark: {access_benchmark:.2f} MOUD sites per 100 annual deaths")
+
+    high_burden = tract_table["overdose_rate_per_100k"] >= rate_cutoff
+    low_access = tract_table["access_moud_per_100_deaths"] < access_benchmark
+    tract_table["access_group"] = np.select(
+        [high_burden & low_access, high_burden & ~low_access,
+         ~high_burden & low_access, ~high_burden & ~low_access],
+        ["high burden, low access", "high burden, high access",
+         "low burden, low access", "low burden, high access"],
+        # np.select's default is the integer 0, which can't share an array
+        # with strings, so give it a string default
+        default="no rate",
+    )
+    # Tracts too small for a rate don't get a group
+    tract_table.loc[tract_table["overdose_rate_per_100k"].isna(), "access_group"] = "no rate"
+    return tract_table
 
 
 def count_deaths(deaths):
@@ -157,6 +241,9 @@ def main():
     print(f"  {too_small.sum()} tracts under {MIN_POPULATION_FOR_RATE} residents get no rate")
     tract_table["is_desert"] = tract_table["miles_to_moud"] > DESERT_DISTANCE_MILES
 
+    tract_table = add_access_scores(tract_table, centers, sites)
+    tract_table = label_quadrants(tract_table)
+
     acs_path = PROCESSED_DIR / ACS_FILENAME
     if acs_path.exists():
         acs = pd.read_csv(acs_path, dtype={"GEOID": str})
@@ -170,6 +257,7 @@ def main():
     print(f"  deaths in table: {tract_table['overdose_deaths'].sum():,} "
           f"({ANALYSIS_START_YEAR} through {ANALYSIS_END_YEAR})")
     print(f"  tracts more than {DESERT_DISTANCE_MILES} miles from MOUD: {tract_table['is_desert'].sum():,}")
+    print(f"  access groups: {tract_table['access_group'].value_counts().to_dict()}")
 
 
 if __name__ == "__main__":
