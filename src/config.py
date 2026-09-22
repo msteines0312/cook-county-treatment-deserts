@@ -146,3 +146,8 @@ DESERT_TRANSIT_MINUTES = 30
 # this before it goes into a chart, the dashboard, or the brief. 10 follows
 # common public health practice (the CDC WONDER standard).
 SUPPRESSION_THRESHOLD = 10
+
+# Rates for tiny tracts are meaningless: O'Hare Airport (tract 9801) has 18
+# residents, so 3 deaths there works out to 1,500 per 100k. Tracts under
+# this population get no rate. Their deaths still count in the totals.
+MIN_POPULATION_FOR_RATE = 500

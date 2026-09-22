@@ -1,23 +1,49 @@
 """
-Run the full Phase 1 ETL from the project root:
+Run the full Phase 1 pipeline from the project root:
 
     python -m src.run_pipeline
 
-Each step saves its output to disk, so a later step can be rerun on its own
-without pulling from the APIs again.
+Each step saves its output to disk, so any single step can also be rerun on
+its own (for example `python -m src.assign_tracts`) without hitting the APIs again.
 """
 
-from src import clean_overdoses, fetch_census, fetch_overdoses, fetch_treatment
+from src import (
+    assign_tracts,
+    build_tract_table,
+    clean_overdoses,
+    fetch_census,
+    fetch_overdoses,
+    fetch_treatment,
+)
+from src.config import PROCESSED_DIR
 
 
 def main():
-    # TODO: wire the steps together once each module works on its own:
-    #   1. fetch_overdoses  -> data/raw/me_accidental_cases.csv
-    #   2. clean_overdoses  -> data/processed/overdose_deaths.csv
-    #   3. fetch_treatment  -> data/processed/moud_facilities.csv
-    #   4. fetch_census     -> data/reference/ tracts + data/processed/acs_tracts.csv
-    #   5. spatial join deaths -> tracts (build this once 1 through 4 exist)
-    raise NotImplementedError
+    print("1/6 Fetching ME accidental death cases")
+    fetch_overdoses.save_raw(fetch_overdoses.fetch_me_cases())
+
+    print("\n2/6 Classifying overdose deaths")
+    clean_overdoses.main()
+
+    print("\n3/6 Downloading census tracts and blocks")
+    fetch_census.fetch_tract_boundaries()
+    fetch_census.fetch_block_population()
+
+    print("\n4/6 Pulling ACS demographics")
+    try:
+        fetch_census.fetch_acs()
+    except RuntimeError as error:
+        # Everything else works without a Census key, so don't stop the run over it
+        print(f"  skipped: {error}")
+
+    print("\n5/6 Assigning deaths to tracts")
+    assign_tracts.main()
+
+    print("\n6/6 Pulling treatment sites and building the tract table")
+    fetch_treatment.main()
+    build_tract_table.main()
+
+    print(f"\nDone. Main output: {PROCESSED_DIR / build_tract_table.OUTPUT_FILENAME}")
 
 
 if __name__ == "__main__":

@@ -83,3 +83,16 @@ Overdose deaths are counts: non-negative integers, mostly small, with a lot of t
 
 ## Framing
 Findings describe access and structural conditions ("a 45-minute transit trip to the nearest methadone clinic"), not behavior of groups.
+
+## First look at access (2026-09-22)
+
+Straight-line distance from population-weighted tract centers to the nearest MOUD site, 2015 through 2025 deaths:
+
+| | Deaths | Population | Rate per 100k per year |
+|---|---|---|---|
+| Within 2 miles of MOUD | 13,765 | 4.12M | 30.4 |
+| More than 2 miles (240 tracts) | 1,578 | 1.16M | 12.4 |
+
+The simple hypothesis ("deserts have more overdose deaths") runs backwards on straight-line distance. The highest-rate tracts in the county (East and West Garfield Park and Humboldt Park, 330 to 455 per 100k) sit 0.2 to 0.6 miles from an MOUD site. Clinics are located where the need is, so distance and overdose burden are tangled together (reverse causality), and most 2-mile deserts are lower-burden suburbs. Median distance countywide is 1.0 mile.
+
+This matters for Phase 4. A regression with distance as the predictor would pick up where clinics chose to open, not the effect of access. What to do about it is still an open decision (see tasks/todo.md).
