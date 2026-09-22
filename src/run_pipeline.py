@@ -11,6 +11,7 @@ from src import (
     assign_tracts,
     build_tract_table,
     clean_overdoses,
+    export_tableau,
     fetch_census,
     fetch_overdoses,
     fetch_treatment,
@@ -19,7 +20,7 @@ from src.config import PROCESSED_DIR
 
 
 def main():
-    print("1/6 Fetching ME accidental death cases")
+    print("1/7 Fetching ME accidental death cases")
     fetch_overdoses.save_raw(fetch_overdoses.fetch_me_cases())
 
     print("\n2/6 Classifying overdose deaths")
@@ -42,6 +43,10 @@ def main():
     print("\n6/6 Pulling treatment sites and building the tract table")
     fetch_treatment.main()
     build_tract_table.main()
+
+    print("
+7/7 Writing suppressed extracts for Tableau")
+    export_tableau.main()
 
     print(f"\nDone. Main output: {PROCESSED_DIR / build_tract_table.OUTPUT_FILENAME}")
 

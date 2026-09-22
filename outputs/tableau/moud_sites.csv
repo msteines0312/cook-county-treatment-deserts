@@ -1,0 +1,205 @@
+name,street,city,state,zip,latitude,longitude,facility_type,offers_methadone,offers_buprenorphine,offers_naltrexone,accepts_medicaid
+Endeavor Health Plainfield,24600 West 127th Street,Plainfield,IL,60585,41.652872,-88.2175116,"MH, SA",False,True,True,True
+Family Guidance Centers Inc,751 Aurora Avenue,Aurora,IL,60505,41.772825,-88.305604,"OTP, SA",True,True,True,True
+Gateway Foundation,400 Mercy Lane,Aurora,IL,60506,41.7841968,-88.3230364,SA,False,True,True,True
+"Soft Landing Interventions, LLC",28373 Davis Parkway,Warrenville,IL,60555,41.8003512,-88.1764327,"OTP, SA",True,True,True,False
+Rosecrance Inc,28371 Davis Parkway,Warrenville,IL,60555,41.8013179,-88.1761661,SA,False,True,True,True
+Serenity House Counseling Services Inc,908 Harrison Street,Batavia,IL,60510,41.8398412,-88.3184205,SA,False,True,False,True
+Care Addiction Center LLC,1250 Executive Place,Geneva,IL,60134,41.8872731,-88.280958,SA,False,True,True,False
+Lighthouse Recovery Inc,210 South 5th Street,Saint Charles,IL,60174,41.9106706,-88.3180732,"MH, SA",False,True,True,True
+Recovery Centers of America,300 Cardinal Drive,Saint Charles,IL,60175,41.9172577,-88.3504487,SA,False,True,True,False
+Recovery Centers of America,41W400 Silver Glen Road,Saint Charles,IL,60175,41.9730626,-88.420186,SA,True,True,True,False
+Greater Family Health,165 East Plank Road,Sycamore,IL,60178,42.0163263579394,-88.6744500086163,"MH, SA",False,True,True,True
+LSSI,675 Varsity Drive,Elgin,IL,60120,42.024576,-88.2507588,SA,False,True,False,True
+Ecker Center for Behavioral Health,1845 Grandstand Place,Elgin,IL,60123,42.0336124,-88.32283,"MH, SA",False,True,True,True
+Greater Family Health,373 Summit Street,Elgin,IL,60120,42.0459945,-88.2776689,"MH, SA",False,True,True,True
+Mathers Recovery LLC,420 Airport Road,Elgin,IL,60123,42.070867,-88.293125,SA,True,True,True,True
+"Mathers Recovery, LLC",420 Airport Road Suite C,Elgin,IL,60123,42.0708852,-88.2855561,OTP,True,False,False,False
+Rosecrance Inc,422 Tracy Court,Crystal Lake,IL,60014,42.2289763,-88.2978822,"MH, SA",False,True,True,True
+Rosecrance Inc,874 Pleasant Street,Woodstock,IL,60098,42.325353,-88.463413,SA,False,True,True,False
+Mathers Recovery LLC,101 Towne Center Lane,Fox Lake,IL,60020,42.395905,-88.178926,SA,False,True,True,True
+"Mathers Recovery, LLC",101 Towne Centre Ln,Fox Lake,IL,60020,42.3965739,-88.1762534,OTP,True,False,False,False
+Symetria Recovery,229 North Hammes Avenue,Joliet,IL,60435,41.5275571,-88.132368,"OTP, SA",True,True,True,False
+Family Guidance Centers Inc,2400 Glenwood Avenue,Joliet,IL,60435,41.5286448,-88.1417961,"OTP, SA",True,True,True,True
+Cornerstone Services Inc,800 Black Road,Joliet,IL,60435,41.5374368,-88.1017528,"MH, SA",False,True,True,True
+Gateway Foundation,1419 Essington Road,Joliet,IL,60435,41.5496539,-88.161958,SA,False,True,True,True
+Stepping Stones Inc,1614 Plainfield Road,Joliet,IL,60435,41.5525884,-88.1221978,"MH, SA",False,True,True,True
+New Day Place LLC,538 East Boughton Road,Bolingbrook,IL,60440,41.7196683,-88.0491264,SA,True,False,False,True
+Endeavor Health,852 South West Street,Naperville,IL,60540,41.759096,-88.1562203,"MH, SA",False,True,True,True
+Endeavor Health,1335 North Mill Street,Naperville,IL,60563,41.7908932,-88.1557118,"MH, SA",False,True,True,True
+Workit Health,1280 Iroquois Road,Naperville,IL,60563,41.792608,-88.122439,"MH, SA",False,True,True,True
+SunCloud Health SC,280 Shuman Boulevard,Naperville,IL,60563,41.8026478,-88.1517673,"MH, SA",False,True,True,False
+Lott Behavioral Health,2300 Cabot Drive,Lisle,IL,60532,41.8104972,-88.0979546,"MH, SA",False,True,True,False
+Stonybrook Center Inc,1506 East Roosevelt Road,Wheaton,IL,60187,41.8588383,-88.0855123,"OTP, SA",True,True,True,True
+DuPage County Health Department,117 North County Farm Road,Wheaton,IL,60187,41.8655555,-88.1398508,"MH, SA",False,True,True,True
+DuPage County Health Department,111 North County Farm Road,Wheaton,IL,60187,41.86548,-88.1417795,"MH, SA",False,True,True,True
+Greater Family Health,1515 East Lake Street,Hanover Park,IL,60133,41.9839369,-88.1435495,"MH, SA",False,True,True,True
+Alexian Brothers BH Hosp,1650 Moon Lake Boulevard,Schaumburg,IL,60169,42.0541025,-88.1372601,"MH, SA",False,True,True,True
+Leyden Family Service,1776 Moon Lake Boulevard,Hoffman Estates,IL,60169,42.0549763,-88.1381746,SA,False,True,True,True
+Revive Treatment Center,2353 Hassell Road,Hoffman Estates,IL,60169,42.0611672,-88.1362303,"OTP, SA",True,True,False,True
+Therapeutic Interventions Inc,1645 Hicks Road,Rolling Meadows,IL,60008,42.092901,-88.0348948,"OTP, SA",True,False,False,True
+Revive Treatment Center - Lake Zurich LLC,365 Surryse Rd,LAKE ZURICH,IL,60047,42.191101,-88.084425,"OTP, SA",True,True,False,True
+Gateway Foundation,25480 West Cedarcrest Lane,Lake Villa,IL,60046,42.4253915,-88.1308365,SA,False,True,True,True
+CAP of Downers Grove,4954 South Main Street,Downers Grove,IL,60515,41.79659,-88.010875,SA,True,True,False,True
+Du Page County Health Department,422 North Cass Avenue,Westmont,IL,60559,41.805786,-87.9762395,"MH, SA",False,True,True,True
+Advent Health,740 Pasquinelli Drive,Westmont,IL,60559,41.8137095,-87.9522427,"MH, SA",False,True,True,True
+Rogers Behavioral Health,907 North Elm Street,Hinsdale,IL,60521,41.8184427,-87.9234422,"MH, SA",False,True,True,False
+Meadows of Wickenburg Inc,3250 Lacey Road,Downers Grove,IL,60515,41.82967167258,-88.02984692849,"MH, SA",False,True,True,False
+Gateway Foundation,3040 Finley Road,Downers Grove,IL,60515,41.8317173,-88.0269342,"MH, SA",False,True,True,True
+Eleanor Health,700 East Butterfield Road,Lombard,IL,60148,41.8405219,-87.9986342,SA,False,True,True,True
+CAP of Downers Grove,4954  S. Main St.,Downers Grove,IL,60515,41.8412094,-88.0156363,OTP,True,False,False,False
+Behavioral Services Center,2021 Midwest Road,Oak Brook,IL,60523,41.8482082,-87.9718392,"MH, SA",False,True,True,True
+DuPage County Health Department,1111 East Jackson Street,Lombard,IL,60148,41.8711367,-87.9906201,"MH, SA",False,True,True,True
+New Age Services Corporation,386 N. York St.,Elmhurst,IL,60126,41.909706,-87.9402923,"MH, OTP, SA",True,True,False,True
+DuPage County Health Department,1111 West Lake Street,Addison,IL,60101,41.9436122,-88.0167964,"MH, SA",False,True,True,True
+Alexian Brothers/Foglia Family,801 Gloucester Drive,Elk Grove Village,IL,60007,42.0062331,-88.0151496,SA,False,True,True,False
+Recovery Centers of America,1855 Rohlwing Road,Rolling Meadows,IL,60008,42.0904717,-88.0278069,SA,False,True,True,False
+A Bridge Back Inc,1655 North Arlington Road,Arlington Heights,IL,60004,42.1069605,-87.9798484,SA,False,True,True,True
+Greater Family Health,300 McHenry Road,Wheeling,IL,60090,42.1434398,-87.9360462,"MH, SA",False,True,True,True
+Lake County Health Dept/CHC,24647 North Milwaukee Avenue,Vernon Hills,IL,60061,42.2211441,-87.9368504,SA,False,True,True,True
+Soft Landing Interventions,"830 West End Court, Suite 900",Vernon Hills,IL,60061,42.2410955,-87.9762076,"OTP, SA",True,True,True,False
+Lake County Center,310 South Greenleaf Street,Gurnee,IL,60031,42.3560566,-87.903214,"OTP, SA",True,True,True,True
+Rogers Behavioral Health,9916 75th Street,Kenosha,WI,53142,42.5677366,-87.9295543,"MH, SA",False,True,True,True
+Duane Dean Behavioral Health Center,700 East Court St.,Kankakee,IL,60901,41.119461,-87.856815,"OTP, SA",True,True,False,True
+Rosecrance Inc,20635 Abbey Woods Court North,Frankfort,IL,60423,41.514831,-87.8477237,SA,False,True,True,True
+Northwestern Medicine,15300 West Avenue,Orland Park,IL,60462,41.6112016,-87.8658509,"MH, SA",False,True,True,True
+Forest Alcohol and Drug Counseling Inc,9050 West 81st Street,Justice,IL,60458,41.7438619,-87.8470495,"MH, SA",True,False,False,True
+Rosecrance Inc,47 6th Avenue,La Grange,IL,60525,41.8142304,-87.8678798,SA,False,True,True,True
+Vet Affairs/Edward Hines Jr Hospital,5000 South 5th Avenue,Hines,IL,60141,41.8611972,-87.841286,"MH, SA",True,True,True,True
+Ascension Illinois Presence Behavioral,9845 West Roosevelt Road,Westchester,IL,60154,41.8633762,-87.8695128,SA,False,True,True,True
+Substance Abuse Operations,308 South Fifth Ave.,Maywood,IL,60153,41.885158,-87.839249,"OTP, SA",True,True,False,True
+"Pilsen-Little Village Community Mental Health, Inc.",1546 N. Mannheim Rd.,Stone Park,IL,60165,41.899591,-87.883877,"OTP, SA",True,False,False,True
+"Soft Landing Interventions, LLC",1460 Market St,Des Plaines,IL,60016,42.0426969,-87.8862865,"OTP, SA",True,True,True,False
+"Family Guidance Centers, Inc.",484 Lee St.,Des Plaines,IL,60016,42.044336,-87.886063,"OTP, SA",True,True,True,True
+Rosecrance Inc,3100 Dundee Road,Northbrook,IL,60062,42.1391586,-87.8568195,SA,False,True,True,True
+"JEM Treatment, Inc","2424 Washington Street, Suite LL-110",Waukegan,IL,60085,42.359622,-87.863056,"OTP, SA",True,True,False,True
+Lake County Substance Abuse Program,3004 Grand Avenue,Waukegan,IL,60085,42.3732025,-87.8765452,"MH, OTP, SA",True,True,True,True
+Captain James A Lovell FHCC,8207 22nd Avenue,Kenosha,WI,53140,42.5553022,-87.8343298,"MH, SA",False,True,True,True
+CleanSlate Centers,7201 Green Bay Road,Kenosha,WI,53142,42.5698914,-87.8860412,SA,False,True,True,True
+Addiction Services and Pharmacotherapy,3825 39th Avenue,Kenosha,WI,53144,42.6018773,-87.8550906,"OTP, SA",True,True,True,True
+Racine Comprehensive Treatment Center,5735 Durand Avenue,Racine,WI,53406,42.6966888,-87.8497746,"OTP, SA",True,True,True,True
+Family Guidance Centers Inc,333 Evergreen Street,Manteno,IL,60950,41.2294518,-87.8074296,"OTP, SA",True,True,True,True
+Northwestern Medicine Palos Hospital,12251 South 80th Avenue,Palos Heights,IL,60463,41.6698049,-87.8128143,"MH, SA",False,True,True,True
+"Radius Foundation, Inc.",11952 S.Harlem Ave. Suite 100,Palos Heights,IL,60463,41.674266,-87.797014,"OTP, SA",True,True,True,True
+Ascension Illinois Presence Behavioral,11824 Southwest Highway,Palos Heights,IL,60463,41.6770304,-87.8159019,SA,False,True,True,False
+MacNeal Hospital,3249 South Oak Park Avenue,Berwyn,IL,60402,41.8321601,-87.7916177,"MH, SA",False,True,True,True
+"Edward Hines Jr., VA Hospital",5th Avenue and Roosevelt Road,Hines,IL,60141,41.85926,-87.837144,OTP,True,False,False,False
+Chicago Treatment and,5635 West Roosevelt Road,Cicero,IL,60804,41.8652418,-87.7659458,SA,True,False,False,True
+Loretto Hospital,645 South Central Avenue,Chicago,IL,60644,41.8721272,-87.7636486,"MH, SA",False,True,True,True
+Maryville Academy/St Josephine,115 North Parkside Avenue,Chicago,IL,60644,41.882788,-87.7661625,SA,False,True,True,True
+"Strive to Serenity, LLC",7124 W Grand Ave,Chicago,IL,60707,41.9239401,-87.8035741,"OTP, SA",True,False,False,True
+Rosecrance Inc,5440 North Cumberland Avenue,Chicago,IL,60656,41.9778366,-87.8374239,"MH, SA",False,True,True,True
+SunCloud Health SC,40 Skokie Boulevard,Northbrook,IL,60062,42.1520409,-87.8022304,"MH, SA",False,True,True,False
+Kenosha Comprehensive Treatment,7991 Sheridan Road,Kenosha,WI,53143,42.5587562,-87.8250252,"OTP, SA",True,True,True,True
+West Grove Clinic SC,1400 75th Street,Kenosha,WI,53143,42.566076,-87.8271515,"MH, SA",False,True,True,True
+Behavioral Health Services of,1717 Taylor Avenue,Racine,WI,53403,42.7091786,-87.8045141,"MH, SA",False,True,True,True
+Henry Ford Behavioral Health All Saint,1333 Wisconsin Avenue,Racine,WI,53403,42.7157658,-87.7845645,"MH, SA",False,True,True,True
+ODA Solutions Inc,4237 1/2 West 95th Street,Oak Lawn,IL,60453,41.720166,-87.7281417,"MH, SA",True,True,True,True
+Vivia Health Gage Park,3306 West 63rd Street,Chicago,IL,60629,41.7790918,-87.7058914,"MH, SA",False,True,True,True
+Recovery Concepts lll LLC,5334 South Archer Avenue,Chicago,IL,60632,41.799152,-87.7411361,"OTP, SA",True,True,False,True
+Lawndale Christian Health Center,5122 South Archer Avenue,Chicago,IL,60632,41.8007841,-87.7304023,"MH, SA",False,True,True,True
+Break the Cycle Foundation Inc,4103 West 26th Street,Chicago,IL,60623,41.8439471,-87.7272376,"OTP, SA",True,False,False,True
+Lawndale Christian Health Center,3256 West 24th Street,Chicago,IL,60623,41.8483874,-87.7082554,"MH, SA",False,True,True,True
+"Pilsen-Little Village Community Mental Health Center, Inc. - Substance Abuse Division",3113  West Cermak Rd.,Chicago,IL,60623,41.85165,-87.703337,"OTP, SA",True,False,False,True
+Lawndale Christian Health Center,3860 West Ogden Avenue,Chicago,IL,60623,41.852495,-87.7219686,"MH, SA",False,True,True,True
+Lawndale Christian Health Center,3750 West Ogden Avenue,Chicago,IL,60623,41.8533492,-87.7193198,"MH, SA",False,True,True,True
+Chicago Treatment and,1849 South Cicero Avenue,Cicero,IL,60804,41.8550945,-87.7441307,SA,True,False,False,True
+New Age Services Corporation,1330 South Kostner Avenue,Chicago,IL,60623,41.863572,-87.735049,"MH, OTP, SA",True,True,False,True
+Divine Recovery Hope Clinic,3936 West Roosevelt Road,Chicago,IL,60624,41.8664755,-87.724168,SA,True,True,False,True
+Lawndale Christian Health Center,3517 West Arthington Street,Chicago,IL,60624,41.8691727,-87.7139099,"MH, SA",False,True,True,True
+Gateway Foundation,3828 West Taylor Street,Chicago,IL,60624,41.8692461,-87.7216031,SA,False,True,True,True
+Garfield Counseling Center,4132 West Madison St.,Chicago,IL,60624-2303,41.8807,-87.7291,"MH, OTP",True,False,False,True
+Lawndale Christian Health Center,3219 West Carroll Avenue,Chicago,IL,60624,41.8871459,-87.7071779,"MH, SA",False,True,True,True
+NEXA/HAS,4734 W. Chicago Ave,Chicago,IL,60651,41.895354,-87.74459,"MH, OTP, SA",True,True,False,True
+Harbor Light Alcoholism and Drug ,825 North Christiana Avenue,Chicago,IL,60651,41.8969828,-87.7095393,SA,False,True,False,True
+Rincon Family Services,3809 W. Grand Avenue,Chicago,IL,60651,41.904217,-87.7219,"OTP, SA",True,True,False,True
+LSSI,4840 West Byron Street,Chicago,IL,60641,41.9517744,-87.7487684,"MH, SA",False,True,False,True
+Behavior Services Center,8707 Skokie Boulevard,Skokie,IL,60077,42.039419,-87.7474271,"MH, SA",False,True,True,True
+Elianak Care LLC,22307 Central Park Avenue,Park Forest,IL,60466,41.4836725,-87.7024921,SA,True,True,False,False
+Rosecrance Inc,11532 South Western Avenue,Chicago,IL,60643,41.6832734,-87.681304,"MH, SA",False,True,True,True
+Evergreen Behavioral Health,2850 West 95th Street,Evergreen Park,IL,60805,41.7214911,-87.6939348,"MH, SA",False,True,True,True
+Millennium Behavior Health Services,2441 W. 79th Street,Chicago,IL,60652,41.749846,-87.684587,OTP,True,False,False,False
+Behavioral Health and,2701 West 68th Street,Chicago,IL,60629,41.7691032,-87.6922738,"MH, SA",False,True,True,True
+Esperanza Brighton Park,4700 South California Avenue,Chicago,IL,60632,41.8080313,-87.6947434,"MH, SA",False,True,True,True
+Cermak Health Services of Cook County,2800 South California Ave.,Chicago,IL,60608,41.841212,-87.695305,OTP,True,False,False,False
+Esperanza Little Village,3059 West 26th Street,Chicago,IL,60623,41.8440228000028,-87.701886935597,"MH, SA",False,True,True,True
+Esperanza California,2001 South California Avenue,Chicago,IL,60608,41.8546596,-87.6952731,"MH, SA",False,True,True,True
+Jesse Brown Opioid Addiction Treatment Program VA,820 South Damen Ave.,Chicago,IL,60612,41.8796,-87.6874,OTP,True,False,False,False
+"PDSSC-Chicago, Inc.",2260 N. Elston,Chicago,IL,60614,41.9226133,-87.6742016,"OTP, SA",True,True,False,True
+Symetria Recovery,3934 North Lincoln Avenue,Chicago,IL,60613,41.9532426,-87.6784232,"OTP, SA",True,True,True,False
+Thresholds Bridge South OE,4101 North Ravenswood Avenue,Chicago,IL,60613,41.956124486301,-87.673769629094,"MH, SA",False,True,True,True
+Bobby Buonauro Clinic Inc,1029 West Howard Street,Evanston,IL,60202,42.019681,-87.686847,"OTP, SA",True,True,False,True
+PEER Services Inc,906 Davis Street,Evanston,IL,60201,42.046846,-87.683694,"OTP, SA",True,True,True,True
+Doreen E Chapman Center,2650 Ridge Avenue,Evanston,IL,60201,42.0655462,-87.6842977,SA,False,True,True,False
+Elite Treatment Center,395 Lincoln Highway,Chicago Heights,IL,60411,41.506034,-87.659344,OTP,True,False,False,False
+Elite Houses of Sober Living,395 West Lincoln Highway,Chicago Heights,IL,60411,41.5062975,-87.6576974,"MH, SA",True,True,True,True
+South Suburban Council on,1909 Cheker Square,Hazel Crest,IL,60429,41.5730359,-87.6643608,SA,False,True,True,True
+Recovery Concepts,17100 Dixie Highway,Hazel Crest,IL,60429,41.5786916,-87.6663391,SA,True,True,False,True
+Recovery Concepts LLC,"17100 Dixie Highway, Suite D",Hazel Crest,IL,60429,41.579729,-87.665358,OTP,True,False,False,False
+"Family Guidance Centers, Inc- Harvey",15400 S. Page,Harvey,IL,60426,41.609763,-87.659783,"OTP, SA",True,True,True,True
+Chicago Treatment and Counseling Center II,4453 North Broadway,Chicago,IL,60640,41.68436,-87.66232,OTP,True,False,False,False
+"Chicago Treatment and Counseling Center, Inc. IV",5635 West Roosevelt Rd.,Cicero,IL,60804,41.68832,-87.66106,OTP,True,False,False,False
+"Chicago Treatment and Counseling Center, Inc. III",1849 South Cicero Ave.,Cicero,IL,60804,41.71422,-87.64434,OTP,True,False,False,False
+Christian Community Health Center,9718 South Halsted Street,Chicago,IL,60628,41.7168999,-87.6433901,"MH, SA",False,True,True,True
+FOLA Community Action Services,8014-8018 S. Ashland Avenue,Chicago,IL,60620,41.748125,-87.663558,"OTP, SA",True,False,False,True
+"Human Resources Development Institute, Inc. (BRASS II)",8000 South Racine,Chicago,IL,60620,41.74855,-87.6540179,"OTP, SA",True,False,True,True
+"Eva Mae Recovery Hope, Inc.",6614 S. Halsted Street,Chicago,IL,60621-1812,41.773771,-87.644988,"OTP, SA",True,False,False,True
+Southwood Interventions,5701 South Wood St.,Chicago,IL,60636,41.7763,-87.6683,OTP,True,False,False,False
+ABRAXAS Youth and Family Services,5701 South Wood Street,Chicago,IL,60636,41.7901509,-87.6686699,"MH, SA",True,True,False,True
+Chicago Treatment and,3520 South Ashland Avenue,Chicago,IL,60609,41.8297873,-87.6658768,"OTP, SA",True,True,False,True
+Family Guidance Centers Inc,1220 South Wood Street,Chicago,IL,60608,41.8663797,-87.6720537,"OTP, SA",True,True,True,True
+McDermott Center/Haymarket Ctr,108 North Sangamon Street,Chicago,IL,60607,41.8833902,-87.6512022,"MH, SA",False,True,True,True
+Ann and Robert H Lurie Childs Hosp of,1440 North Dayton Street,Chicago,IL,60642,41.907662,-87.6499969,SA,False,True,True,True
+SunCloud Health SC,1840 North Clybourn Avenue,Chicago,IL,60614,41.9146326,-87.6550362,"MH, SA",False,True,True,False
+Vivia Health Bucktown,2409 North Clybourn Avenue,Chicago,IL,60614,41.9253268,-87.6692523,"MH, SA",False,True,True,True
+Howard Brown Health Center,3501 North Halsted Street,Chicago,IL,60657,41.9455805,-87.6491902,"MH, SA",False,True,True,True
+Chicago Treatment and,4453 North Broadway Avenue,Chicago,IL,60640,41.9631939,-87.6557453,SA,True,True,False,True
+"Sundance Methadone Treatment Center, LLC",4545 North Broadway,Chicago,IL,60640,41.964456,-87.656543,"OTP, SA",True,False,False,True
+LSSI,5517 North Kenmore Avenue,Chicago,IL,60640,41.9824505,-87.6561691,SA,False,True,False,True
+Vivia Health Rogers Park,6303 North Clark Street,Chicago,IL,60660,41.9965868,-87.6699178,"MH, SA",False,True,True,True
+Radius Foundation Inc,1014 Main Street,Crete,IL,60417,41.4558146,-87.6338709,SA,True,False,False,True
+Serenity Treatment & Counseling Center,19408 North Creek Drive,Lynwood,IL,60411,41.5430145,-87.5642824,OTP,True,False,False,False
+Great Heights OTP,1473 Ring Road,Calumet City,IL,60409,41.5951066,-87.5620258,SA,True,True,True,True
+Great Heights OTP - Calumet City,1473 Ring Road,Calumet City,IL,60409,41.59523,-87.560703,OTP,True,False,False,False
+ICAN Community Services Inc,15475 South Park Avenue,South Holland,IL,60473,41.6132165,-87.6070181,"MH, SA",True,True,False,True
+"ICAN Community Services, Inc.",15475 South Park Avenue,South Holland,IL,60473,41.613998,-87.607386,OTP,True,False,False,False
+Christian Community Health Center,901 East Sibley Boulevard,South Holland,IL,60473,41.6221501,-87.5951641,"MH, SA",False,True,True,True
+"Human Resources Development Institute, Inc.",33 East 114th St.,Chicago,IL,60628,41.686918,-87.622195,"MH, OTP, SA",True,False,True,True
+Human Resources Development Institute,11352 South State Street,Chicago,IL,60628,41.6873334,-87.6233228,SA,False,True,True,True
+Eva Mae Recovery Hope Inc,10723 South Halsted Street,Chicago,IL,60628,41.6988601,-87.642196,"OTP, SA",True,False,False,True
+Midway Medical Center LLC,2 W. 103,Chicago,IL,60628,41.7074277,-87.623767,OTP,True,False,False,False
+Human Resources Development Institute,2311 East 98th Street,Chicago,IL,60617,41.7161254,-87.5671998,SA,False,True,True,True
+"Drexel Counseling Services, Inc.",936 East 93rd Street,Chicago,IL,60619,41.7259474,-87.6011212,"OTP, SA",True,True,False,True
+South Shore Hospital,8012 South Crandon Ave.,Chicago,IL,60617,41.749519,-87.568831,"OTP, SA",True,False,False,True
+Nuway Community Services Inc,110 East 79th Street,Chicago,IL,60619,41.7512652,-87.620726,"OTP, SA",True,False,False,True
+IJEGBA Community Inc.,1950 E. 75th St.,Chicago,IL,60649,41.758938,-87.577228,OTP,True,False,False,False
+Renewed Hope Community Services,626 East 71st Street,Chicago,IL,60619,41.7659984,-87.6093528,"OTP, SA",True,False,False,True
+Friend Family Health Center,6250 South Cottage Grove,Chicago,IL,60637,41.7807507,-87.6062743,"MH, SA",False,True,True,True
+Bridging the Tys to Jordan Inc,5500 South Indiana Avenue,Chicago,IL,60637,41.7941509,-87.6211849,"MH, SA",False,True,True,True
+"Human Resources Development Institute, Inc. (BRASS I)",340 East 51st St.,Chicago,IL,60615,41.802271,-87.618318,"MH, OTP, SA",True,False,True,True
+Family Guidance Centers Inc,2630 South Wabash Avenue,Chicago,IL,60616,41.8445823,-87.6256932,"OTP, SA",True,True,True,True
+Gateway Foundation,415 North Dearborn Street,Chicago,IL,60654,41.8897621,-87.6293352,"MH, SA",False,True,True,True
+Rosecrance Therapies,320 West Ohio Street,Chicago,IL,60654,41.8925435,-87.6367553,SA,False,True,True,True
+Center for Addictive Problems,609 North Wells Street,Chicago,IL,60654,41.892761,-87.634084,"OTP, SA",True,True,False,True
+Family Guidance Centers Inc,310 West Chicago Avenue,Chicago,IL,60654,41.89683,-87.636283,SA,True,True,True,True
+"Family Guidance Centers, Inc.",310 West Chicago Ave.,Chicago,IL,60654,41.8991,-87.6364,OTP,True,False,False,False
+Heartland Wellness Center,2068 Lucas Parkway,Lowell,IN,46356,41.286835,-87.3928172,"MH, SA",False,True,True,True
+Recovery Works,201 West 89th Avenue,Merrillville,IN,46410,41.4569459,-87.3383785,SA,False,True,True,True
+CleanSlate Centers,8601 Connecticut Avenue,Merrillville,IN,46410,41.4617607,-87.3328055,SA,False,True,True,True
+Regional Health Systems,8555 Taft Street,Merrillville,IN,46410,41.4634324,-87.3634698,"MH, SA",False,True,True,True
+MedMark Treatment Centers,8500 Broadway Avenue,Merrillville,IN,46410,41.4635733,-87.3370629,"OTP, SA",True,True,False,False
+Porter Starke Services Inc,601 Wall Street,Valparaiso,IN,46383,41.4893905,-87.0537208,"MH, SA",False,True,True,True
+"Porter-Starke Services, Inc",2507 Cumberland Ave.,Valparaiso,IN,46383,41.4916125,-87.0514815,"OTP, SA",True,False,False,True
+Serenity Trt and Counseling Ctr Inc,19408 North Creek Drive,Chicago Heights,IL,60411,41.5422008,-87.5600803,SA,True,True,False,True
+Porter Starke Services Inc,3176 Lancer Street,Portage,IN,46368,41.5601327,-87.1807041,"MH, SA",False,True,True,True
+Spero Health of Indiana LLC,1351 West 11th Avenue,Gary,IN,46404,41.5913833,-87.3537665,SA,False,True,False,True
+"Metro Treatment Center of Gary, LP",5001 East Dunes Highway,Gary,IN,46403,41.596296,-87.277451,"OTP, SA",True,True,False,True
+Heartland Wellness Center,101 Beverly Drive,Chesterton,IN,46304,41.5956616,-87.0482567,"MH, SA",False,True,True,True
+New Life Center -Edgewater Systems for Balanced Living,1110 West Fifth Ave.,Gary,IN,46402,41.5996,-87.3316,OTP,True,False,False,False
+Porter Starke Services Inc,1230 West State Road 2,La Porte,IN,46350,41.5997289,-86.7323017,"OTP, SA",True,False,False,True
+Groups Recover Together,614 Andrew Avenue,La Porte,IN,46350,41.6011716,-86.7344864,SA,False,True,False,True
+NorthShore Health Centers,508 Legacy Plaza West,La Porte,IN,46350,41.602465,-86.6953383,"MH, SA",False,True,True,True
+NorthShore Health Centers,801 Broadway,Chesterton,IN,46304,41.6111316,-87.0634106,"MH, SA",False,True,True,True
+Christian Community Health Center,364 Torrence Avenue,Calumet City,IL,60409,41.6266091,-87.5593999,"MH, SA",False,True,True,True
+Regional Health Systems,3903 Indianapolis Boulevard,East Chicago,IN,46312,41.6418397,-87.4799747,"MH, SA",False,True,True,True
+Olatoye Rehabilitation Center Inc,9135 South Exchange Avenue,Chicago,IL,60617,41.7289467,-87.5524419,"OTP, SA",True,False,False,True
