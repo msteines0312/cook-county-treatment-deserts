@@ -23,29 +23,28 @@ def main():
     print("1/7 Fetching ME accidental death cases")
     fetch_overdoses.save_raw(fetch_overdoses.fetch_me_cases())
 
-    print("\n2/6 Classifying overdose deaths")
+    print("\n2/7 Classifying overdose deaths")
     clean_overdoses.main()
 
-    print("\n3/6 Downloading census tracts and blocks")
+    print("\n3/7 Downloading census tracts and blocks")
     fetch_census.fetch_tract_boundaries()
     fetch_census.fetch_block_population()
 
-    print("\n4/6 Pulling ACS demographics")
+    print("\n4/7 Pulling ACS demographics")
     try:
         fetch_census.fetch_acs()
     except RuntimeError as error:
         # Everything else works without a Census key, so don't stop the run over it
         print(f"  skipped: {error}")
 
-    print("\n5/6 Assigning deaths to tracts")
+    print("\n5/7 Assigning deaths to tracts")
     assign_tracts.main()
 
-    print("\n6/6 Pulling treatment sites and building the tract table")
+    print("\n6/7 Pulling treatment sites and building the tract table")
     fetch_treatment.main()
     build_tract_table.main()
 
-    print("
-7/7 Writing suppressed extracts for Tableau")
+    print("\n7/7 Writing suppressed extracts for Tableau")
     export_tableau.main()
 
     print(f"\nDone. Main output: {PROCESSED_DIR / build_tract_table.OUTPUT_FILENAME}")

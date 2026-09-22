@@ -200,6 +200,14 @@ def merge_nearby_listings(facilities):
     pd.DataFrame
         One row per site, with the name and coordinates of its first listing.
     """
+    # The API returns listings in a different order on each call, and each site
+    # takes its name and coordinates from its first listing. Sorting first makes
+    # the output the same every run for the same underlying data. Coordinates
+    # are in the sort key because a clinic's SA and MH listings can share a name
+    # and address but sit a few meters apart.
+    sort_key = ["name", "street", "city", "latitude", "longitude"]
+    facilities = facilities.sort_values(sort_key).reset_index(drop=True)
+
     points = gpd.GeoDataFrame(
         facilities,
         geometry=gpd.points_from_xy(facilities["longitude"], facilities["latitude"]),

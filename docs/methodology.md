@@ -66,7 +66,9 @@ The ME records where the incident happened and, separately, the residence ZIP. W
 
 **Deduplication:** the same clinic often appears two or three times (as a substance use facility, a mental health facility, and in the separate OTP directory), with slightly different addresses. Listings within 300 feet of each other are merged into one site. 813 listings became 534 sites.
 
-**Result (Sept 2026 pull, 60-mile radius):** 534 sites, 204 offering MOUD (96 methadone, 160 buprenorphine), 163 offering MOUD and accepting Medicaid. 20 methadone sites don't line up with an OTP directory record but describe themselves as OTPs or methadone maintenance programs, so they're kept.
+**Result (Sept 22, 2026 pull, 60-mile radius):** 534 sites, 203 offering MOUD (96 methadone, 159 buprenorphine), 162 offering MOUD and accepting Medicaid. FindTreatment is a live directory, so a later pull will differ a little (one site dropped out between two pulls on the same day).
+
+**Deterministic merging:** the API returns listings in a different order on every call, and each merged site takes its name and coordinates from its first listing. Listings are sorted (name, address, then coordinates) before merging so the same data always gives the same sites. This was caught when a rerun changed the underserved group by two tracts with no change in the underlying directory. 20 methadone sites don't line up with an OTP directory record but describe themselves as OTPs or methadone maintenance programs, so they're kept.
 
 **Radius:** 60 miles from downtown, not just Cook County. Tracts near the county line may be closest to a clinic in DuPage, Lake, McHenry, or Will County, and ignoring those would create fake deserts at the border.
 
@@ -94,8 +96,8 @@ Two versions of demand:
 
 | Group | Tracts | Share of population | Share of 2015-2025 deaths | Sites per 100 deaths | Miles to nearest MOUD | Median income | % no vehicle | % Black |
 |---|---|---|---|---|---|---|---|---|
-| High burden, low access | 229 | 12.5% | **39.5%** | 4.3 | 0.6 | $43,569 | 29.7 | 79.8 |
-| High burden, high access | 103 | 6.4% | 17.5% | 10.0 | 0.6 | $58,494 | 21.2 | 67.3 |
+| High burden, low access | 227 | 12.4% | **39.3%** | 4.2 | 0.6 | $43,951 | 29.7 | 79.8 |
+| High burden, high access | 105 | 6.4% | 17.7% | 9.8 | 0.6 | $58,189 | 21.2 | 67.3 |
 | Low burden, high access | 435 | 34.6% | 17.2% | 13.8 | 0.9 | $93,632 | 11.4 | 4.4 |
 | Low burden, low access | 561 | 46.5% | 25.8% | 2.6 | 1.6 | $82,768 | 9.1 | 3.8 |
 
@@ -103,7 +105,7 @@ Two versions of demand:
 
 The high-burden, low-access tracts are **not** deserts by distance: their median tract is 0.6 miles from a clinic. Per resident they look fine. Per overdose death, they have less than half the treatment supply of other high-burden tracts.
 
-**Sensitivity:** at 1, 2, and 3 mile catchments the high-burden, low-access group has 239, 229, and 244 tracts. 84% of the 2-mile group appears in the 1-mile group, and 84% appears in the 3-mile group. The group's median demographics barely move (about 80% Black, about 30% of households without a vehicle).
+**Sensitivity:** at 1, 2, and 3 mile catchments the high-burden, low-access group has 242, 227, and 244 tracts. 85% of the 2-mile group appears in the 1-mile group, and 84% appears in the 3-mile group. The group's median demographics barely move (about 80% Black, about 30% of households without a vehicle).
 
 **Limitations:**
 - Every site counts as 1 unit of supply. FindTreatment doesn't publish capacity (slots, hours, waitlists), so a large methadone clinic and a small buprenorphine practice count the same. This is the biggest weakness of the measure, and it's a good question for people who work in treatment.
