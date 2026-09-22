@@ -13,24 +13,15 @@ where deaths happen in Cook.
 """
 
 import re
-from io import StringIO
 
 import geopandas as gpd
 import pandas as pd
-import requests
 
 from src.config import COUNTY_FIPS, CRS_LATLON, PROCESSED_DIR, REFERENCE_DIR, STATE_FIPS
 from src.fetch_census import TRACTS_FILENAME
+from src.geocoding import geocode_addresses
 
-GEOCODER_URL = "https://geocoding.geo.census.gov/geocoder/geographies/addressbatch"
-GEOCODER_BATCH_SIZE = 1_000  # the service allows 10k, but smaller batches time out less
 OUTPUT_FILENAME = "overdose_deaths_tracts.csv"
-
-GEOCODER_COLUMNS = [
-    "casenumber", "input_address", "match_status", "match_type",
-    "matched_address", "coordinates", "tiger_line_id", "side",
-    "state_fips", "county_fips", "tract_code", "block_code",
-]
 
 # Anything after one of these is apartment/room detail that confuses the geocoder
 UNIT_PATTERN = re.compile(
@@ -73,32 +64,6 @@ def clean_address(street):
     return UNIT_PATTERN.sub("", street).strip(" ,.")
 
 
-def geocode_batch(batch):
-    """
-    Send one batch of addresses to the Census geocoder.
-
-    Parameters
-    ----------
-    batch : pd.DataFrame
-        Columns casenumber, street, city, state, zip (the order the API expects).
-
-    Returns
-    -------
-    pd.DataFrame
-        One row per input with the geocoder's match status and tract codes.
-    """
-    csv_body = batch.to_csv(index=False, header=False)
-    response = requests.post(
-        GEOCODER_URL,
-        files={"addressFile": ("addresses.csv", csv_body)},
-        # Census2020_Current vintage returns 2020 tract codes, matching our tracts
-        data={"benchmark": "Public_AR_Current", "vintage": "Census2020_Current"},
-        timeout=600,
-    )
-    response.raise_for_status()
-    return pd.read_csv(StringIO(response.text), header=None, names=GEOCODER_COLUMNS, dtype=str)
-
-
 def geocode_missing(deaths):
     """
     Geocode cases that have no ME coordinates.
@@ -121,12 +86,7 @@ def geocode_missing(deaths):
     addresses = addresses[addresses["street"] != ""]
     print(f"  {len(missing):,} cases lack coordinates, {len(addresses):,} have a usable address")
 
-    results = []
-    for start in range(0, len(addresses), GEOCODER_BATCH_SIZE):
-        batch = addresses.iloc[start:start + GEOCODER_BATCH_SIZE]
-        results.append(geocode_batch(batch))
-        print(f"  geocoded {min(start + GEOCODER_BATCH_SIZE, len(addresses)):,} addresses")
-    geocoded = pd.concat(results, ignore_index=True)
+    geocoded = geocode_addresses(addresses).rename(columns={"id": "casenumber"})
 
     matched = geocoded[geocoded["match_status"] == "Match"]
     in_cook = matched[(matched["state_fips"] == STATE_FIPS) & (matched["county_fips"] == COUNTY_FIPS)]

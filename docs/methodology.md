@@ -59,6 +59,22 @@ The ME records where the incident happened and, separately, the residence ZIP. W
 
 **Open question:** should the definition also require the facility to accept Medicaid?
 
+### D4b. Which facilities count as MOUD providers
+**Rule:** a site offers MOUD if any of its listings is a federally certified Opioid Treatment Program (methadone) or says in its opioid treatment services that it prescribes buprenorphine or maintains patients on buprenorphine or methadone. Naltrexone is tracked but doesn't count: methadone and buprenorphine are the medications with the strongest evidence for reducing overdose deaths.
+
+**Why not the "medications used" list:** FindTreatment has a separate field, "Methadone used in Treatment", and sober living homes fill it in when they accept residents who get medication elsewhere. Counting those would call a sober house a methadone provider. Only OTPs can legally dispense methadone for opioid use disorder, so the first draft's 148 "methadone facilities" (vs 77 OTP listings) was the tip-off.
+
+**Deduplication:** the same clinic often appears two or three times (as a substance use facility, a mental health facility, and in the separate OTP directory), with slightly different addresses. Listings within 300 feet of each other are merged into one site. 813 listings became 534 sites.
+
+**Result (Sept 2026 pull, 60-mile radius):** 534 sites, 204 offering MOUD (96 methadone, 160 buprenorphine), 163 offering MOUD and accepting Medicaid. 20 methadone sites don't line up with an OTP directory record but describe themselves as OTPs or methadone maintenance programs, so they're kept.
+
+**Radius:** 60 miles from downtown, not just Cook County. Tracts near the county line may be closest to a clinic in DuPage, Lake, McHenry, or Will County, and ignoring those would create fake deserts at the border.
+
+**Known gaps:**
+- FindTreatment doesn't list individual buprenorphine prescribers. Since the federal X-waiver ended in 2023, any DEA-registered clinician can prescribe it, so primary care access is invisible here. This analysis measures access to *specialty* MOUD sites.
+- 14 listings had no usable location (mostly sober living homes that keep their address private). 2 of them list MOUD.
+- Telehealth buprenorphine isn't captured by a physical-distance measure at all.
+
 ### D5. Small-number suppression
 Suppress any published count below 10. This matters most for tract-by-race breakdowns.
 
