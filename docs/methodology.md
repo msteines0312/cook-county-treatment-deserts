@@ -42,6 +42,10 @@ The matching constants live in `src/config.py`.
 ### D1c. Cases without coordinates
 1,333 overdose cases (7.8%) have no lat/long. The missing share is fairly steady by year (5% to 13%, highest in 2014 and 2015), so dropping them wouldn't badly bend the trend, but 95% have a street address. We run those addresses through the Census Bureau batch geocoder, which returns the tract directly. Anything that still doesn't match is dropped, and the final match rate is reported.
 
+**Result:** all 15,708 cases with ME coordinates fall inside a Cook tract. Of the 1,333 without coordinates, 319 had no usable address ("Unknown", blank), and the geocoder matched 487 of the remaining 1,014. 91 of those matches were outside Cook County, which suggests the ME only stores coordinates for addresses inside Cook. That leaves 396 recovered cases (78 exact matches, 318 non-exact). Final coverage is **16,104 of 17,041 deaths (94.5%)** assigned to a tract. The 5.5% we lose is a known undercount, documented here and in the README.
+
+Non-exact matches can land a few doors or a block away (one case matched "E. Delaware" to "W Delaware Pl"). That error is small next to a census tract, so they're kept, and every case has a `geo_source` and `match_type` column for filtering.
+
 ### D2. Unit of analysis: census tract
 Tracts (about 1,300 in Cook County, roughly 4,000 people each) are small enough to show neighborhood variation, and they're the level where ACS data exists. Community areas would give more stable rates but only cover Chicago, not suburban Cook.
 
