@@ -115,9 +115,29 @@ The high-burden, low-access tracts are **not** deserts by distance: their median
 Suppress any published count below 10. This matters most for tract-by-race breakdowns.
 
 ### D6. Regression model
-**Open issue (2026-09-22):** the original plan was to regress overdose counts on access. With need-based 2SFCA that's circular, because deaths are in the access score's denominator. With distance, the reverse causality from clinic siting is the problem. Options for Phase 4: model deaths on demographics and *population-based* access and treat the result as descriptive rather than causal, or drop the causal framing and focus on describing who lives in the underserved group. To be decided before Phase 4 starts.
+**Question:** across tracts, which structural conditions go along with higher overdose death rates when considered together? The results are descriptive associations, not causal effects.
 
-Overdose deaths are counts: non-negative integers, mostly small, with a lot of tracts near zero. Linear regression assumes a continuous, normally distributed outcome, which a count isn't. We'll use a negative binomial model with log(population) as an offset (which turns counts into rates), because overdose counts are almost certainly overdispersed (variance much larger than the mean), and overdispersion breaks Poisson's variance = mean assumption. We'll fit Poisson first and test for overdispersion before switching.
+**Why not "deaths explained by access":** need-based 2SFCA has deaths in its denominator, so using it to predict deaths is circular. Distance and population-based access have the reverse-causality problem (clinics open where deaths are already high). Population-based access is kept in the model as a control and read with that caveat.
+
+**Model:** negative binomial regression of 2015-2025 tract deaths with log(population x 11 years) as an offset, so coefficients describe rates. Percent predictors are scaled per 10 points. 1,328 tracts (population 500+ with complete ACS data).
+
+**Checks that shaped the model:**
+- *Overdispersion:* the variance of tract deaths is 177.5 against a mean of 11.5, and the Poisson dispersion ratio is 6.8. Poisson would understate uncertainty, so the model is negative binomial (AIC 8,373 vs 12,149).
+- *Collinearity:* all variance inflation factors are under 3. Poverty and median income overlap conceptually, so only one goes in at a time. Swapping them barely moves the other estimates.
+- *Spatial autocorrelation:* Moran's I of the residuals is 0.30 (p = 0.001, queen contiguity, 999 permutations). Standard errors are clustered by the first two digits of the tract code (81 area clusters; in Chicago these line up with community areas). A spatial lag or spatial error model would be the next step up.
+
+**Results (rate ratios, 95% CI):**
+
+| Per 10 percentage points | Rate ratio | 95% CI |
+|---|---|---|
+| Households without a vehicle | 1.20 | 1.12 to 1.29 |
+| Black residents | 1.15 | 1.10 to 1.21 |
+| Residents uninsured | 1.15 | 1.04 to 1.27 |
+| Residents below poverty | 1.13 | 1.07 to 1.19 |
+| Hispanic residents | 1.08 | 1.03 to 1.13 |
+| MOUD sites per 100k residents (per site) | 1.04 | 0.99 to 1.09 |
+
+**Interpretation guardrails:** racial composition stands in for conditions tied to segregation that the ACS doesn't measure (disinvestment, drug market concentration, policing, historical access to care). It says nothing about individuals. The analysis is ecological and cross-sectional, and deaths are placed where they happened rather than where people lived.
 
 ## Framing
 Findings describe access and structural conditions ("a 45-minute transit trip to the nearest methadone clinic"), not behavior of groups.

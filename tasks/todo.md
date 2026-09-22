@@ -16,10 +16,11 @@
 - [ ] `notebooks/01_data_quality.ipynb`: row counts, nulls, what each overdose rule catches
 
 ## Phase 2: Where and when
-- [ ] Deaths per 100k by tract (pool years, since single-year tract rates are noisy)
-- [ ] Fentanyl share over time
-- [ ] Hour of day and day of week patterns (ask Dad what he'd expect to see)
-- [ ] Apply suppression before any chart gets saved
+- [x] Deaths per 100k by tract (pool years, since single-year tract rates are noisy)
+- [x] Fentanyl share over time
+- [x] Hour of day and day of week patterns
+- [ ] Ask Dad whether the daytime peak matches when people are usually found
+- [x] Apply suppression before any chart gets saved
 
 ## Phase 3: Access
 - [x] Population-weighted tract centers (block-level population)
@@ -27,16 +28,17 @@
 - [x] Sensitivity check at 1, 2, and 3 miles (first pass: 667 / 240 / 82 tracts)
 - [x] Decide how to handle reverse causality: switched to need-based 2SFCA (methodology D4c)
 - [x] 2SFCA access scores (population and need), access groups, catchment sensitivity check
-- [ ] Map of access groups
+- [x] Map of access groups
 - [ ] Use transit travel time as the 2SFCA catchment instead of straight-line miles
 - [ ] Transit travel time with r5py plus CTA/Pace GTFS (feeds the catchment above)
 - [ ] Ask Mom and my brother which listed facilities actually take new patients
 
 ## Phase 4: Demographics and modeling
 - [x] First pass: access group comparison table (methodology D4c)
-- [ ] **Decide the regression framing** (need-based access is circular as a predictor, see methodology D6)
-- [ ] Poisson model, then an overdispersion check, then negative binomial with a population offset
-- [ ] Interpret the results as rate ratios
+- [x] Decide the regression framing: structural conditions model, descriptive (methodology D6)
+- [x] Poisson model, then an overdispersion check, then negative binomial with a population offset
+- [x] Residual spatial autocorrelation check (Moran's I) and clustered standard errors
+- [x] Interpret the results as rate ratios
 
 ## Phase 5: Story
 - [ ] Tableau extracts in `outputs/tableau/`
