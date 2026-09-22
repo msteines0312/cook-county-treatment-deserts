@@ -24,11 +24,23 @@ The matching constants live in `src/config.py`.
 ## Decisions
 
 ### D1. What counts as an overdose death
-**Current rule:** `manner == ACCIDENT` AND (`opioids` flag is True OR the cause text matches a drug keyword).
+**Rule:** `manner == ACCIDENT` AND the cause text (Lines A, B, and C combined) names a drug AND a poisoning word (toxicity, intoxication, overdose, poisoning).
 
-**Why:** Accidental manner excludes suicides and undetermined cases, which is the standard definition for "unintentional drug overdose" in CDC reporting. The ME's own opioid flag is more reliable than our text search, but it misses stimulant-only deaths (cocaine, meth), so keywords fill that gap. We avoid matching on "TOXICITY" alone because it also catches alcohol-only and carbon monoxide deaths.
+**Why:** Accidental manner excludes suicides and undetermined cases, which matches the CDC definition of unintentional drug poisoning (ICD-10 X40-X44). Any drug or medication counts. Alcohol alone, carbon monoxide, and solvents don't. Requiring a poisoning word keeps out cases where drug use is mentioned but wasn't the cause. Alcohol plus a drug counts.
 
-**Open questions:** Should alcohol-plus-drug deaths count? (Yes if a drug keyword is present.) How many cases does each rule catch on its own?
+**Changed from the first draft (2026-09-22):** the first version also counted any case with the ME `opioids` flag set. Looking at the data showed that flag marks opioid *involvement*, not cause: 308 flagged cases have causes like asthma, drowning, and heart disease. The flag is now only a cross-check.
+
+**Result:** 17,041 overdose deaths. 15,001 of them also carry the ME opioid flag. The other 2,040 are mostly cocaine, meth, PCP, and prescription drug deaths that the flag was never meant to catch.
+
+**Typos:** the cause text misspells fentanyl at least a dozen ways ("FENATANYL", "FENTNAYL", "FENANYL"...), plus "HERION", "OPIOD", and "METHAPHETAMINE". Those are listed explicitly in `config.py` rather than fuzzy-matched, so every match can be explained.
+
+**Consistency over time:** since Sept 2023, `primarycause` merges Lines A, B, and C. Before that it held Line A only. We combine the lines ourselves for every year so the definition doesn't shift in 2023.
+
+### D1b. Analysis window: 2015 through 2025
+2014 starts in August (partial year). In the current year, hundreds of cases are still `manner = PENDING` while toxicology comes back (624 for 2026 at the time of writing), so the current year would show a fake drop. 2025 has 17 pending cases, a small enough undercount to accept. The 2024 and 2025 declines are real (they aren't driven by pending cases) and match the national trend.
+
+### D1c. Cases without coordinates
+1,333 overdose cases (7.8%) have no lat/long. The missing share is fairly steady by year (5% to 13%, highest in 2014 and 2015), so dropping them wouldn't badly bend the trend, but 95% have a street address. We run those addresses through the Census Bureau batch geocoder, which returns the tract directly. Anything that still doesn't match is dropped, and the final match rate is reported.
 
 ### D2. Unit of analysis: census tract
 Tracts (about 1,300 in Cook County, roughly 4,000 people each) are small enough to show neighborhood variation, and they're the level where ACS data exists. Community areas would give more stable rates but only cover Chicago, not suburban Cook.

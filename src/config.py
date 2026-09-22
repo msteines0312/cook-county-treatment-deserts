@@ -49,6 +49,12 @@ ME_PAGE_SIZE = 50_000  # Socrata caps a single request, so we page through
 # Clip to a clean window so trend charts aren't distorted by stray records.
 ME_START_DATE = "2014-08-01"
 
+# Rates and trends only use complete calendar years. 2014 starts in August, and
+# the current year has hundreds of cases still marked manner = PENDING while
+# toxicology comes back (624 in 2026 as of Sept 2026, vs 17 left in 2025).
+ANALYSIS_START_YEAR = 2015
+ANALYSIS_END_YEAR = 2025
+
 # FindTreatment.gov (SAMHSA) locator JSON export
 FINDTREATMENT_URL = "https://findtreatment.gov/locator/exportsAsJson/v2"
 
@@ -59,31 +65,68 @@ ACS_YEAR = 2023  # most recent 5-year release as of project start
 # ---------------------------------------------------------------------------
 # Defining an overdose death
 # ---------------------------------------------------------------------------
-# Start with the ME's own opioids flag plus manner == ACCIDENT, then use keyword
-# matching to catch non-opioid overdoses (cocaine, meth) the flag misses.
-# Keywords are matched against the combined primarycause text. Since Sept 2023
-# that field merges Lines A, B, and C, so the search sees all three lines either way.
+# An overdose is manner == ACCIDENT and a cause of death that names a drug
+# alongside a poisoning word (toxicity, intoxication, overdose). This tracks the
+# CDC definition of unintentional drug poisoning (ICD-10 X40-X44): any drug or
+# medication counts, while alcohol alone, carbon monoxide, and solvents don't.
+#
+# We do NOT use the ME's `opioids` flag to decide. It's set on cases like
+# asthma and drowning where opioids were present but weren't the cause, so it
+# measures involvement, not cause. It's kept as a cross-check.
+#
+# Cause text is built from Lines A, B, and C for every year. The ME started
+# merging those lines into `primarycause` in Sept 2023, and earlier years only
+# have Line A there. Combining them ourselves keeps the definition the same
+# across the whole time series.
 OVERDOSE_MANNER = "ACCIDENT"
 
-DRUG_KEYWORDS = [
-    "FENTANYL",
-    "HEROIN",
-    "OPIOID",
-    "OPIATE",
-    "MORPHINE",
-    "OXYCODONE",
-    "HYDROCODONE",
-    "METHADONE",
-    "COCAINE",
-    "METHAMPHETAMINE",
-    "XYLAZINE",
-    "DRUG TOXICITY",
-    "DRUG INTOXICATION",
+CAUSE_COLUMNS = [
+    "primarycause",
+    "primarycause_linea",
+    "primarycause_lineb",
+    "primarycause_linec",
 ]
 
-# Kept separate so we can report fentanyl-involved deaths on their own. That
-# trend line is the headline chart in Phase 2.
-FENTANYL_KEYWORDS = ["FENTANYL", "FENTANIL"]
+POISONING_KEYWORDS = ["TOXIC", "INTOX", "OVERDOSE", "POISON"]
+
+# Fentanyl gets its own list because the shift to fentanyl is the headline
+# trend in Phase 2. These are substring matches, so "FENTAN" also catches
+# FENTANYL, FENTANLY, CARFENTANIL, and ACETYLFENTANYL. The misspellings are
+# real ones found in the data.
+FENTANYL_KEYWORDS = [
+    "FENTAN", "FENATANYL", "FENTNAYL", "FENTAYL", "FENANYL",
+    "FENTNANYL", "FENATNYL",
+]
+
+OPIOID_KEYWORDS = FENTANYL_KEYWORDS + [
+    "HEROIN", "HERION", "HERON",
+    "OPIOID", "OPIOD", "OPIATE",
+    "MORPHINE", "HYDROMORPHONE", "OXYMORPHONE", "CODEINE",
+    "OXYCODONE", "HYDROCODONE", "METHADONE", "BUPRENORPHINE",
+    "TRAMADOL", "TAPENTADOL", "MEPERIDINE", "LOPERAMIDE",
+    "MITRAGYNINE", "KRATOM", "NITAZENE", "U-47700",
+]
+
+STIMULANT_KEYWORDS = [
+    "COCAINE", "COCAETHYLENE",
+    "AMPHETAMINE", "METHAPHETAMINE", "MDMA",
+    "PENTYLONE", "CATHINONE", "PYRROLIDINOVALEROPHENONE",
+]
+
+OTHER_DRUG_KEYWORDS = [
+    "PHENCYCLIDINE", "PCP", "XYLAZINE",
+    "BENZODIAZEPINE", "ALPRAZOLAM", "CLONAZEPAM", "DIAZEPAM", "LORAZEPAM",
+    "ETIZOLAM", "BUTALBITAL",
+    "GABAPENTIN", "NEURONTIN", "CYCLOBENZAPRINE",
+    "ACETAMINOPHEN", "SALICYLATE", "DIPHENHYDRAMINE", "DEXTROMETHORPHAN",
+    "ANTIDEPRESSANT", "AMITRIPTYLINE", "IMIPRAMINE", "BUPROPION", "VENLAFAXINE",
+    "QUETIAPINE", "OLANZAPINE", "RISPERIDONE", "LITHIUM", "METOPROLOL",
+    "CANNABINOID",
+    # generic wording the ME uses when it doesn't list specific drugs
+    "DRUG", "MEDICATION", "POLYSUBSTANCE", "NARCOTIC",
+]
+
+DRUG_KEYWORDS = OPIOID_KEYWORDS + STIMULANT_KEYWORDS + OTHER_DRUG_KEYWORDS
 
 # ---------------------------------------------------------------------------
 # Defining a treatment desert
