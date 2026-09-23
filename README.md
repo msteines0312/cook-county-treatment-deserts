@@ -6,18 +6,22 @@ Where are overdose deaths happening in Cook County, is addiction treatment locat
 
 ## Key Findings
 
+- **The fentanyl era hit Black residents far harder.** In 2016, Black Cook County residents died of overdoses at 1.5 times the White rate (age-adjusted). By 2023 it was 3.6 times: 84.9 vs 23.4 deaths per 100k. The White rate barely moved through the fentanyl wave while the Black rate nearly tripled. Rates have fallen since, but the gap is still 2.6 times as of 2025.
 - **Distance to treatment was the wrong measure.** The tracts with the highest overdose death rates are the *closest* to a clinic (median 0.6 miles), because clinics open where need is. Measured per resident, those tracts look the best served in the county. Measured per overdose death, they have the least treatment supply.
 - **227 census tracts hold 12.4% of residents and 39.3% of overdose deaths** while having fewer MOUD sites per death than the county overall. They have 4.2 sites per 100 annual deaths, compared with 9.8 in other high-burden tracts.
 - **Those tracts are poorer and more car-free.** Compared with better-served high-burden tracts: median household income of $43,951 vs $58,189, 26% vs 19% in poverty, 30% vs 21% of households without a vehicle. The median tract is 80% Black.
-- **Car-free households have the strongest link to overdose rates.** In a negative binomial model, each 10 more points of households without a vehicle goes with a 20% higher overdose death rate (95% CI 12% to 29%), holding poverty, insurance, and racial composition fixed.
+- **Car-free households have the strongest link to overdose rates.** In a negative binomial model, each 10 more points of households without a vehicle goes with a 20% higher overdose death rate (95% CI 12% to 29%), holding poverty, insurance, and racial composition fixed. That estimate barely moves no matter what else goes in the model.
+- **Poverty, housing insecurity, and mental distress move as one.** Tracts where more adults report frequent mental distress have much higher overdose rates, but mental distress, housing insecurity, and poverty overlap so closely that the data can't separate them. Diagnosed depression, which depends on access to care, shows no relationship on its own.
 - **The fentanyl era, then a decline.** Deaths tripled from 629 in 2015 to 2,060 in 2022, with fentanyl in 84% of them at the peak, then fell 56% by 2025. The median age at death rose from 45 to 53.
+
+![Age-adjusted overdose death rates by race](outputs/figures/rates_by_race.png)
 
 ![Two ways to measure access](outputs/figures/access_two_measures.png)
 
 ## Tech Stack
 - **Python:** pandas, numpy, geopandas, shapely, statsmodels, matplotlib
-- **APIs and data:** Cook County Medical Examiner Case Archive (Socrata API), SAMHSA FindTreatment.gov, U.S. Census ACS 5-year estimates (Census API), Census TIGER/Line boundaries, Census batch geocoder
-- **Methods:** two-step floating catchment area (2SFCA) spatial access, negative binomial regression with a population offset, Moran's I, cluster-robust standard errors
+- **APIs and data:** Cook County Medical Examiner Case Archive (Socrata API), SAMHSA FindTreatment.gov, U.S. Census ACS 1-year and 5-year estimates (Census API), CDC PLACES tract health estimates, Census TIGER/Line boundaries, Census batch geocoder
+- **Methods:** age-adjusted rates (2000 U.S. standard population), two-step floating catchment area (2SFCA) spatial access, negative binomial regression with a population offset, Moran's I, cluster-robust standard errors
 - **Tableau** for the dashboard (in progress)
 
 ## How to Run
@@ -44,18 +48,21 @@ src/
   fetch_overdoses.py    ME API pull (all accidental deaths)
   clean_overdoses.py    overdose classification from cause-of-death text
   fetch_census.py       tracts, block populations, ACS demographics
+  fetch_places.py       CDC PLACES mental health and social needs estimates
   assign_tracts.py      spatial join, with a geocoding fallback
   geocoding.py          Census batch geocoder wrapper
   fetch_treatment.py    FindTreatment.gov pull, MOUD classification, dedupe
   access.py             2SFCA access scores
   build_tract_table.py  the main tract-level analysis table
   model.py              count model, Moran's I, rate ratio table
+  race_rates.py         age-adjusted death rates by race and year
   export_tableau.py     suppressed extracts for the dashboard
   plots.py              shared chart styling
 notebooks/
   02_where_and_when     trends, concentration, timing
   03_access             distance vs need-based access, who lives in underserved tracts
   04_model              negative binomial model of structural conditions
+  05_race_and_other_factors  racial gap over time, mental health and other correlates
 docs/methodology.md     every judgment call, with the reasoning and what changed
 outputs/figures/        charts used here and in the brief
 outputs/tableau/        suppressed extracts that feed the dashboard

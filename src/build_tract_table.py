@@ -30,6 +30,7 @@ from src.config import (
     REFERENCE_DIR,
 )
 from src.fetch_census import ACS_FILENAME, BLOCKS_FILENAME, TRACTS_FILENAME
+from src.fetch_places import PROCESSED_FILENAME as PLACES_FILENAME
 
 OUTPUT_FILENAME = "tract_table.csv"
 CENTERS_FILENAME = "tract_population_centers.gpkg"
@@ -251,6 +252,12 @@ def main():
         print("  joined ACS demographics")
     else:
         print("  ACS file not found, skipping demographics (run fetch_census with a Census API key)")
+
+    places_path = PROCESSED_DIR / PLACES_FILENAME
+    if places_path.exists():
+        places = pd.read_csv(places_path, dtype={"GEOID": str})
+        tract_table = tract_table.merge(places, on="GEOID", how="left")
+        print("  joined CDC PLACES health estimates")
 
     tract_table.to_csv(PROCESSED_DIR / OUTPUT_FILENAME, index=False)
     print(f"  saved {len(tract_table):,} tracts to data/processed/{OUTPUT_FILENAME}")

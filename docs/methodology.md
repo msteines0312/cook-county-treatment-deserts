@@ -141,6 +141,30 @@ Suppress any published count below 10. This matters most for tract-by-race break
 
 **Interpretation guardrails:** racial composition stands in for conditions tied to segregation that the ACS doesn't measure (disinvestment, drug market concentration, policing, historical access to care). It says nothing about individuals. The analysis is ecological and cross-sectional, and deaths are placed where they happened rather than where people lived.
 
+### D7. Overdose death rates by race and ethnicity
+**Method:** age-adjusted rates per 100k for each year, using nine age bands and the 2000 U.S. standard population weights (the CDC standard). Denominators are ACS 1-year estimates for Cook County for each year. 95% CIs use the normal approximation for a weighted sum of Poisson rates.
+
+**Groups:** Black (any ethnicity), White non-Hispanic, and Hispanic of any race. The ACS has no non-Hispanic Black age table, so Black deaths are matched the same way. Hispanic Black residents (about 1 to 2% of Black residents) count in both the Black and Hispanic groups. Asian residents had too few deaths (about 10 a year) for stable yearly rates.
+
+**Starts in 2016, not 2015:** the ME wasn't reliably recording Hispanic ethnicity before 2016 (0% of cases flagged in 2014, 4% in 2015, then a steady 12 to 17%). In 2015, Hispanic deaths are undercounted and some are counted as White non-Hispanic instead. This showed up as an implausible jump in the Hispanic rate from 2015 to 2016.
+
+**Missing ACS years:** the Census Bureau didn't release standard 2020 1-year estimates (COVID disrupted data collection), so 2020 uses the average of 2019 and 2021. 2025 estimates aren't out yet, so 2025 reuses 2024.
+
+**Result:** the Black to White ratio of age-adjusted rates rose from 1.5 in 2016 to 3.6 in 2023 (84.9 vs 23.4 per 100k), and was 2.6 in 2025. Crude and age-adjusted rates tell the same story.
+
+**Caveat:** deaths are counted where they happened and populations are Cook County residents, so a small share of deaths are people who lived outside the county. That affects all groups.
+
+### D8. Mental health and other neighborhood factors
+**Sources:** unemployment and education from the ACS; frequent mental distress, diagnosed depression, housing insecurity, and other measures from CDC PLACES (2025 release, tract level).
+
+**About PLACES:** these are model-based estimates, not counts. The CDC fits survey responses (BRFSS) to each tract's demographics, including poverty and race, then predicts a prevalence. So PLACES measures partly repeat the ACS variables. Frequent mental distress and housing insecurity each correlate 0.77 with poverty across tracts.
+
+**Individual-level mental illness isn't available:** the ME's secondary cause field lists physical contributing conditions (heart disease in 915 overdose deaths, COPD or asthma in 233), and mentions a psychiatric condition once across 17,000 deaths. So mental health can only be studied by neighborhood.
+
+**Approach:** add each factor to the Phase 4 model one at a time and compare fit (AIC), the new factor's rate ratio per standard deviation, and what happens to the existing estimates.
+
+**Result:** frequent mental distress (rate ratio 1.45 per SD, 1.26 to 1.68) and housing insecurity (1.60 per SD, 1.22 to 2.09) both improve the fit and both absorb poverty's effect (poverty drops from 1.13 to about 0.97). They can't be separated from poverty with this data, so they're reported as one hardship cluster. Diagnosed depression is unrelated to overdose rates on its own but positive once poverty and race are held fixed (1.15 per SD), which fits underdiagnosis in lower-income tracts. Unemployment and education add little. Car access stays at 1.19 to 1.21 per 10 points in every specification.
+
 ## Framing
 Findings describe access and structural conditions ("a 45-minute transit trip to the nearest methadone clinic"), not behavior of groups.
 

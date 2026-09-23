@@ -57,6 +57,12 @@ ACS_VARIABLES = {
     # Vehicle access
     "B08201_001E": "households",
     "B08201_002E": "households_no_vehicle",
+    # Unemployment (share of the civilian labor force, not of all adults)
+    "B23025_003E": "civilian_labor_force",
+    "B23025_005E": "unemployed",
+    # Education, adults 25 and over
+    "B06009_001E": "education_universe",
+    "B06009_002E": "no_high_school_diploma",
 }
 
 
@@ -181,6 +187,8 @@ def add_rates(acs):
         acs["pct_poverty"] = acs["below_poverty"] / acs["poverty_universe"] * 100
         acs["pct_uninsured"] = uninsured_total / acs["insurance_universe"] * 100
         acs["pct_no_vehicle"] = acs["households_no_vehicle"] / acs["households"] * 100
+        acs["pct_unemployed"] = acs["unemployed"] / acs["civilian_labor_force"] * 100
+        acs["pct_no_high_school"] = acs["no_high_school_diploma"] / acs["education_universe"] * 100
 
     pct_columns = [col for col in acs.columns if col.startswith("pct_")]
     acs[pct_columns] = acs[pct_columns].replace([np.inf, -np.inf], np.nan)

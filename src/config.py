@@ -64,6 +64,11 @@ RACE_ANALYSIS_START_YEAR = 2016
 # FindTreatment.gov (SAMHSA) locator JSON export
 FINDTREATMENT_URL = "https://findtreatment.gov/locator/exportsAsJson/v2"
 
+# CDC PLACES tract estimates (2025 release, 2020 tract boundaries). These are
+# model-based: the CDC combines survey answers with each tract's demographics,
+# so they partly overlap with the ACS variables. See methodology D8.
+PLACES_URL = "https://data.cdc.gov/resource/yjkw-uj5s.json"
+
 # Census API (ACS 5-year). A free key is required, set CENSUS_API_KEY in .env
 CENSUS_API_BASE = "https://api.census.gov/data"
 ACS_YEAR = 2023  # most recent 5-year release as of project start

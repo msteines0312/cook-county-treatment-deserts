@@ -39,6 +39,9 @@
 - [x] Poisson model, then an overdispersion check, then negative binomial with a population offset
 - [x] Residual spatial autocorrelation check (Moran's I) and clustered standard errors
 - [x] Interpret the results as rate ratios
+- [x] Age-adjusted death rates by race and year (methodology D7)
+- [x] Test mental health, housing, unemployment, education as added factors (methodology D8)
+- [ ] Forecasting model: predict next year's tract deaths, test on 2024-2025 against a "same as last year" baseline
 
 ## Phase 5: Story
 - [x] Tableau extracts in `outputs/tableau/`

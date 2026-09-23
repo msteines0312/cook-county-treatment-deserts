@@ -76,9 +76,12 @@ def fit_poisson(data):
     return poisson, dispersion
 
 
-def fit_negative_binomial(data):
+def fit_negative_binomial(data, formula=None):
     """
     Fit the negative binomial model with cluster-robust standard errors.
+
+    `formula` defaults to the main model; pass a different one to test
+    added variables with the exact same fitting steps.
 
     Two steps: estimate the dispersion parameter (alpha) by maximum likelihood,
     then refit as a GLM with that alpha so we can use clustered standard
@@ -90,11 +93,12 @@ def fit_negative_binomial(data):
     tuple
         (fitted GLM result with clustered SEs, estimated alpha)
     """
-    first_pass = smf.negativebinomial(model_formula(), data, offset=data["log_exposure"]).fit(disp=0)
+    formula = formula or model_formula()
+    first_pass = smf.negativebinomial(formula, data, offset=data["log_exposure"]).fit(disp=0)
     alpha = first_pass.params["alpha"]
 
     cluster_ids = pd.factorize(data["cluster"])[0]
-    model = smf.glm(model_formula(), data, family=sm.families.NegativeBinomial(alpha=alpha),
+    model = smf.glm(formula, data, family=sm.families.NegativeBinomial(alpha=alpha),
                     offset=data["log_exposure"])
     result = model.fit(cov_type="cluster", cov_kwds={"groups": cluster_ids})
     return result, alpha

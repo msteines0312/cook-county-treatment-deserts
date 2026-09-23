@@ -9,6 +9,8 @@ Between 2015 and 2025, 15,343 people died of accidental drug overdoses in Cook C
 
 ## What we found
 
+**The gap by race tripled.** In 2016, Black residents of Cook County died of overdoses at 1.5 times the rate of White residents, after adjusting for age. By 2023 it was 3.6 times (84.9 vs 23.4 deaths per 100,000). Deaths have since fallen for everyone, but in 2025 the Black rate was still 2.6 times the White rate. The neighborhoods where that gap is concentrated are the ones described below.
+
 **1. Clinics are close to the hardest-hit neighborhoods, but they're stretched thin.** Tracts with the highest overdose death rates are a median of 0.6 miles from a treatment site. That's closer than anywhere else in the county, so a distance map would call them well served. But measured against the number of people dying nearby, these same tracts have the least treatment supply in the county.
 
 **2. A small share of the county carries a large share of deaths with the least treatment per death.** 227 census tracts, home to 12.4% of Cook County residents, account for 39.3% of overdose deaths. They have 4.2 treatment sites in reach per 100 annual overdose deaths, less than half the 9.8 in other high-burden tracts.
