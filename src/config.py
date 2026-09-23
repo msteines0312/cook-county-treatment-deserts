@@ -55,6 +55,12 @@ ME_START_DATE = "2014-08-01"
 ANALYSIS_START_YEAR = 2015
 ANALYSIS_END_YEAR = 2025
 
+# The ME only started recording Hispanic ethnicity partway through 2015 (0% of
+# cases flagged in 2014, 4% in 2015, a steady 12-17% from 2016 on). Before
+# 2016, Hispanic deaths are undercounted and some land in "White non-Hispanic",
+# so comparisons by race and ethnicity start in 2016.
+RACE_ANALYSIS_START_YEAR = 2016
+
 # FindTreatment.gov (SAMHSA) locator JSON export
 FINDTREATMENT_URL = "https://findtreatment.gov/locator/exportsAsJson/v2"
 
